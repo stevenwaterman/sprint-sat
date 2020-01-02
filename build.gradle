@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'com.scottlogic.swaterman.blog'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.sat4j', name: 'org.sat4j.core', version: '2.3.1'
+    compile group: 'org.sat4j', name: 'org.sat4j.maxsat', version: '2.3.1'
+    compile group: 'de.vandermeer', name: 'asciitable', version: '0.3.2'
+    compile group: 'de.vandermeer', name: 'ascii-utf-themes', version: '0.0.1'
+}

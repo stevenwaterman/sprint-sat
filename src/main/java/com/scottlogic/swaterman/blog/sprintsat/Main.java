@@ -13,6 +13,8 @@ import java.util.stream.IntStream;
 
 public class Main {
 	public static void main(String[] args) {
+		Long start = System.currentTimeMillis();
+
 		Task t1 = new Task.Tech("Auth Framework", 2);
 		Task t2 = new Task("User Login", 1, 3, t1);
 		Task t3 = new Task("User Signup", 3, 1, t1);
@@ -26,11 +28,14 @@ public class Main {
 		int totalEstimate = Arrays.stream(backlog.getTasks()).mapToInt(Task::getEstimate).sum();
 
 		List<Sprint> sprints = IntStream.rangeClosed(1, totalEstimate)
-		                                .mapToObj(budget -> Solver.getOptimalSprint(backlog, budget))
+		                                .mapToObj(budget -> Solver.getOptimalSprint(backlog, budget, null))
 		                                .collect(Collectors.toList());
 
 		AsciiTable table = generateTable(backlog, sprints);
 		System.out.println(table.render());
+
+		Long end = System.currentTimeMillis();
+		System.out.println(end - start);
 	}
 
 	private static AsciiTable generateTable(Backlog backlog, List<Sprint> sprints){

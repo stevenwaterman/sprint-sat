@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Solver {
-	public static Sprint getOptimalSprint(Backlog input, int budget) {
+	public static Sprint getOptimalSprint(Backlog input, int budget, Long timeoutMs) {
 		Task[] tasks = input.getTasks();
 		MinCostDecorator solver = parse(tasks, budget);
+		if(timeoutMs != null) {
+			solver.setTimeoutMs(timeoutMs);
+		}
 		int[] indices = getOptimalAssignment(solver);
 		return getSprintFromAssignment(indices, tasks);
 	}
@@ -72,8 +75,10 @@ public class Solver {
 	}
 
 	private static int[] getOptimalAssignment(MinCostDecorator solver) {
+//		long now = System.currentTimeMillis();
 		try {
 			while (solver.admitABetterSolution()) {
+//				System.out.println(solver.getObjectiveValue() + " in " + (System.currentTimeMillis() - now) + "ms");
 				solver.discardCurrentSolution();
 			}
 		} catch (ContradictionException | TimeoutException ignored) {

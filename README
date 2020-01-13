@@ -1,3 +1,5 @@
+# Sprint SAT
+
 This project uses a Weighted MAX-SAT solver to automate sprint planning.
 It was created as part of a [blog post on the Scott Logic blog](https://blog.scottlogic.com).
 

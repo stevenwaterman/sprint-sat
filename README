@@ -1,0 +1,8 @@
+This project uses a Weighted MAX-SAT solver to automate sprint planning.
+It was created as part of a [blog post on the Scott Logic blog](https://blog.scottlogic.com).
+
+To run the code, call the main method in `Main.java`.
+It is pre-configured in line with the blog post.
+
+The main method in `StressTest.java` runs many large randomly-generated tests and reports the time taken.
+It was used to generate the graph at the bottom of the blog post.
